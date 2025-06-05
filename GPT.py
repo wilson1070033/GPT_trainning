@@ -724,4 +724,22 @@ def main():
         print(f"檢測到已訓練的模型: {config['output_dir']}")
         print("1. 使用現有模型")
         print("2. 訓練新模型")
-        choice = input("請選擇
+        choice = input("請選擇 (1/2): ")
+        
+        if choice == "1":
+            use_trained_model(config["output_dir"])
+        elif choice == "2":
+            model_path = train_new_model()
+            print(f"\n模型訓練完成！現在可以開始聊天：")
+            use_trained_model(model_path)
+        else:
+            print("無效選擇，退出程序")
+    else:
+        print("沒有檢測到已訓練的模型，開始訓練新模型...")
+        model_path = train_new_model()
+        print(f"\n模型訓練完成！現在可以開始聊天：")
+        use_trained_model(model_path)
+
+
+if __name__ == "__main__":
+    main()
